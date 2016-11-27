@@ -1,5 +1,5 @@
 'use strict';
-angular.module('word.field.widget')
+angular.module('word.field.widget',[])
     .controller('wordFieldWidgetController', ['$scope', function($scope) {
         $scope.insertdata = function(){
             console.log("insertdata");
@@ -16,10 +16,11 @@ angular.module('word.field.widget')
                 });
         };
     }])
-    // .directive('wordFieldWidget', function() {
-    //     return {
-    //         templateUrl: 'word-field-widget.html',
-    //         controller: 'wordFieldWidgetController'
-    //     };
-    // })
+    .directive('wordFieldWidget', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'word-field-widget.html',
+            controller: 'wordFieldWidgetController'
+        };
+    })
 ;
