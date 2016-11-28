@@ -41,7 +41,8 @@
 
     $setNewWordIdQuery = "update `word` set `idBaseForm` = ".$newWordBaseId." where `idBaseForm` = -1 and `french` = ".$french ;
 
-    header('Content-Type: application/json');
+
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($obj);
 
 

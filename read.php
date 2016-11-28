@@ -5,35 +5,47 @@
     //$french = $data->{"typedValue"};
     $french = $mysqli->real_escape_string($data->{"typedValue"});
     $finnish = "Bullshit";
-    $grammaticalCategory = "verb";
+    $grammaticalCategory = "='verb'";//sqlStringConditionify(real_escape_string($data->{"grammaticalCategory"}), false)
     $group = "";
     $gender = $mysqli->real_escape_string($data->{"gender"});
     $plural = "";
     $declinationOrTempus = "";
     $personalProname = "";
 
-    $chooseIdQuery = "select distinct idBaseForm from `word` where `idBaseForm` <> -1 ".
+    $chooseIdQuery = "select distinct idBaseForm from `word` where `idBaseForm` <> -1 ";
 //    "(`idBaseForm`, `french`, `finnish`, `grammaticalCategory`, `group`, `gender`, `plural`, `declinationOrTempus`, `personalProname`) values (".
 //    "-1,".
 //    sqlStringify($french, false).",".
 //    sqlStringify($finnish, false).",".
-//    sqlStringify($grammaticalCategory, false).",".
+    if($grammaticalCategory != ""){
+        $chooseIdQuery = $chooseIdQuery." and `grammaticalCategory` ".$grammaticalCategory." ";
+     }
 //    sqlStringify($group, false).",".
 //    sqlStringify($gender, false).",".
 //    sqlNumerify($plural, false).",".
 //    sqlStringify($declinationOrTempus, false).",".
 //    sqlStringify($personalProname, false).
-    " limit 10";
+    $chooseIdQuery = $chooseIdQuery." ORDER BY RAND() limit 1";
 
-//    $chooseIdQuery = "OK";
+
     $res = $mysqli->query($chooseIdQuery);
     $row_cnt = $res->num_rows;
-    $randbetween1and10 = rand(1,$row_cnt);
     while($obj = $res->fetch_object()){
-    	if($randbetween1and10 --  <= 1){
-		    $idWord=$obj->idBaseForm;
-    	}
+		 $idWord=$obj->idBaseForm;
     }
-    header('Content-Type: application/json');
-    echo json_encode($row_cnt);
+
+    $wordsAllFormsQuery = "select * from `word` where `idBaseForm` = ".$idWord
+    ." and `declinationOrTempus` like 'present%'"
+    ." order by `declinationOrTempus` asc" ;
+    $res2 = $mysqli->query($wordsAllFormsQuery);
+
+     while($obj2 = $res2->fetch_object()){
+         $idWord2[]=$obj2;
+     }
+//    $encoding = mb_detect_encoding($idWord2[0]->finnish);
+//    mb_convert_encoding($idWord2, 'UTF-8', 'UTF-16');
+//    $encoding = mb_detect_encoding($idWord2);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($idWord2,JSON_UNESCAPED_UNICODE);
+//    echo $idWord2[0]->finnish;
 ?>

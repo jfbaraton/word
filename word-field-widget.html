@@ -1,8 +1,8 @@
 <div class="wordfield" >
     <form>
-        <p>NameX: <input type="text" ng-model="name"></p>
-        <p ng-bind="name"></p>
-        <input type="button" value="insert" ng-click="insertdata()"/>
-        <input type="button" value="read" ng-click="readdata()"/>
+        <p>{{idbaseform}}-{{declinationortempus}}-{{personal}}-{{plural}}: <input type="text" ng-model="name">
+            <input type="button" value="insert" ng-click="insertdata()"/>
+            <input type="button" value="read" ng-click="readdata()"/>
+        </p>
     </form>
 </div>
