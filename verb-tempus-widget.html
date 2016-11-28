@@ -1,12 +1,48 @@
 
-<div class="wordfield" >
-
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController">minä <word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="1" plural="0"></word-field-widget></div>
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController">sinä <word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="2" plural="0"></word-field-widget></div>
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController"><word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="3" plural="0"></word-field-widget></div>
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController"><word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="1" plural="1"></word-field-widget></div>
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController"><word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="2" plural="1"></word-field-widget></div>
-    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController"><word-field-widget idbaseform="{{idbaseform}}" declinationortempus="{{declinationortempus}}" personal="3" plural="1"></word-field-widget></div>
-
-
+<p>{{declinationortempus}}</p>
+<div class="verbTempus" >
+    <div ng-app="word.field.widget" ng-controller="wordFieldWidgetController">
+        <word-field-widget
+            idbaseform="{{idbaseform}}"
+            declinationortempus="{{declinationortempus}}"
+            personal="1"
+            plural="0"
+            label="-">
+    </word-field-widget>
+        <word-field-widget
+            idbaseform="{{idbaseform}}"
+            declinationortempus="{{declinationortempus}}"
+            personal="2"
+            plural="0"
+            label="-">
+    </word-field-widget>
+        <word-field-widget
+             idbaseform="{{idbaseform}}"
+             declinationortempus="{{declinationortempus}}"
+             personal="3"
+             plural="0"
+             label="-">
+        </word-field-widget>
+        <word-field-widget
+             idbaseform="{{idbaseform}}"
+             declinationortempus="{{declinationortempus}}"
+             personal="1"
+             plural="1"
+             label="-">
+        </word-field-widget>
+        <word-field-widget
+             idbaseform="{{idbaseform}}"
+             declinationortempus="{{declinationortempus}}"
+             personal="2"
+             plural="1"
+             label="-">
+        </word-field-widget>
+        <word-field-widget
+             idbaseform="{{idbaseform}}"
+             declinationortempus="{{declinationortempus}}"
+             personal="3"
+             plural="1"
+             label="-">
+        </word-field-widget>
+    </div>
 </div>

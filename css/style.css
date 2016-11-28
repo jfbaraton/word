@@ -1,0 +1,33 @@
+.wordlabel {
+    float:left;
+    width:100px;
+    text-align: right;
+}
+
+.wordContents {
+    float:left
+}
+
+.wordfield{
+    clear:left
+}
+
+/*.verbTempus{*/
+    /*border-style: solid;*/
+    /*border-width:2px;*/
+    /*border-color:darkblue;*/
+
+    /*float:left;*/
+    /*padding:5px;*/
+    /*margin:5px*/
+/*}*/
+
+.verbTempusGroup{
+    border-style: solid;
+    border-width:2px;
+    border-color:darkblue;
+
+    float:left;
+    padding:5px;
+    margin:5px
+}}

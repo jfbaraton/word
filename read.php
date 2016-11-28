@@ -35,8 +35,8 @@
     }
 
     $wordsAllFormsQuery = "select * from `word` where `idBaseForm` = ".$idWord
-    ." and `declinationOrTempus` like 'present%'"
-    ." order by `declinationOrTempus` asc" ;
+//    ." and `declinationOrTempus` like 'present%'"
+    ." order by `declinationOrTempus` asc, `plural` asc, `personalProname` asc " ;
     $res2 = $mysqli->query($wordsAllFormsQuery);
 
      while($obj2 = $res2->fetch_object()){

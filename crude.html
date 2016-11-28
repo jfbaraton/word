@@ -1,23 +1,39 @@
-<div ng-app="verb.tempus.widget" ng-controller="verbTempusWidgetController">
-    <verb-tempus-widget idbaseform="1" declinationortempus="present"></verb-tempus-widget>
+<div ng-app="wordFieldCRUDE" ng-controller="CRUDEController">
+    <button ng-click="readdata()">READ</button>
+    <button ng-click="resetall()">RESET</button>
+    <div class="verbTempusGroup">
+        <verb-tempus-widget declinationortempus="present"></verb-tempus-widget>
+        <word-field-widget
+                idbaseform="-2"
+                declinationortempus="present_negative"
+                personal="1"
+                plural="0"
+                label="-">
+        </word-field-widget>
+    </div>
+    <verb-tempus-widget declinationortempus="imperfect"></verb-tempus-widget>
 </div>
-
 <script>
-//var app = angular.module('wordFieldCRUDE',['word.field.widget']);
-//app.controller('wordFieldController',function($scope, $http){
-//    $scope.insertdata = function(){
-//        console.log("insertdata");
-//        $http.post("insert.php", {'typedValue': $scope.name,'blabla': 'BBBBB' })//$scope.name
-//        .success(function(data, status, headers, config){
-//            console.log("data saved");
-//        });
-//    };
-//    $scope.readdata = function(){
-//        console.log("readdata");
-//        $http.post("read.php", {'typedValue': $scope.name,'blabla': 'BBBBB' })//$scope.name
-//                .success(function(data, status, headers, config){
-//                    console.log("data read");
-//                });
-//    };
-//});
+var app = angular.module('wordFieldCRUDE',['verb.tempus.widget','word.field.widget']);
+app.controller('CRUDEController',function($scope, $http){
+    $scope.insertdata = function(){
+        console.log("insertdata");
+        $http.post("insert.php", {'typedValue': $scope.name,'blabla': 'BBBBB' })//$scope.name
+        .success(function(data, status, headers, config){
+            console.log("data saved");
+        });
+    };
+    $scope.readdata = function(){
+        console.log("readdata2");
+        $http.post("read.php", {'typedValue': $scope.name,'blabla': 'BBBBB' })//$scope.name
+                .success(function(data, status, headers, config){
+                    $scope.$broadcast('verbTempus:newData',data);
+                    console.log("data read2");
+                });
+    };
+
+    $scope.resetall = function() {
+        $scope.$broadcast('wordField:reset');
+    }
+});
 </script>
