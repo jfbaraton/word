@@ -239,7 +239,7 @@ function ajouter0($string){
 // if NOT allowEmpty => empty string transformed to null
 function sqlStringify($value, $allowEmpty){
     if(!isset($value))return "null";
-    if(!$allowEmpty && $value == "")return "null";
+    if(!$allowEmpty && ($value == "" || $value == "null"))return "null";
     return "'".str_replace("'", " ", $value)."'";
 }
 
@@ -247,7 +247,7 @@ function sqlStringify($value, $allowEmpty){
 // if not numeric, null is returned
 function sqlNumerify($value, $allowEmpty){
     if(!isset($value))return "null";
-    if(!$allowEmpty && $value == "")return "null";
+    if(!$allowEmpty && ($value == "" || $value == "null"))return "null";
     if(!is_numeric($value))return null;
     return $value;
 }

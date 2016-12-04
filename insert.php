@@ -3,14 +3,15 @@
 	$input = file_get_contents("php://input");
     $data  =json_decode($input);
     //$french = $data->{"typedValue"};
-    $french = $mysqli->real_escape_string($data->{"typedValue"});
-    $finnish = "Bullshit";
+    $idbaseform = $mysqli->real_escape_string($data->{"idbaseform"});
+    $french = $mysqli->real_escape_string($data->{"french"});
+    $finnish = $mysqli->real_escape_string($data->{"typed"});
     $grammaticalCategory = "verb";
-    $group = "";
+    $group = $mysqli->real_escape_string($data->{"group"});
     $gender = $mysqli->real_escape_string($data->{"gender"});
-    $plural = "";
-    $declinationOrTempus = "";
-    $personalProname = "";
+    $plural = $mysqli->real_escape_string($data->{"plural"});
+    $declinationOrTempus $mysqli->real_escape_string($data->{"declinationOrTempus"});
+    $personalProname $mysqli->real_escape_string($data->{"personalProname"});
 
     // check that mandatory fields are provided
 
@@ -43,7 +44,7 @@
 
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($obj);
+    echo json_encode($returnedToCallingPage);
 
 
 ?>

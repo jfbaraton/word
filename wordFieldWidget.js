@@ -18,10 +18,36 @@ angular.module('word.field.widget',[])
         };
 
         $scope.$on('wordField:newData', function (event, row) {
+            if($scope.typed == "-" && $scope.correction == '-') {
+                $scope.handleRowData(row);
+            }
+        });
+
+        $scope.$on('verbTempus:newData', function (event, data) {
+            if($scope.typed == "-" && $scope.correction == '-') {
+                console.log('verbField:new tempus Data start', data);
+                data.forEach(function (row) {
+                    $scope.idbaseform = row.idBaseForm;
+                    if (row.declinationOrTempus == $scope.declinationortempus) {
+                        console.log('handling row data locally in wordField');
+                        $scope.handleRowData(row);
+                    } else {
+                        //console.log('verbTempus:newData - rejected ',row.declinationOrTempus);
+                    }
+                })
+            }
+        });
+
+        $scope.$on('wordField:reset', function (event) {
+            $scope.typed = "-";
+            $scope.correction = "-";
+        });
+
+        $scope.handleRowData = function(row){
             $scope.idbaseform = row.idBaseForm;
             if(row.declinationOrTempus == $scope.declinationortempus
-            && row.personalProname == $scope.personal
-            && row.plural == $scope.plural){
+                && row.personalProname == $scope.personal
+                && row.plural == $scope.plural){
                 if($scope.label == "-"){
                     if($scope.plural == "0"){
                         if(row.declinationOrTempus.includes("passive")){
@@ -78,21 +104,23 @@ angular.module('word.field.widget',[])
                                 $scope.label += " ei";
                             }
                         } else {
-                            $scope.label = "###JEFF";
+                            if(row.declinationOrTempus.includes("negative")) {
+                                $scope.label = " ei";
+                            }else {
+                                $scope.label = "###JEFF";
+                            }
                         }
                     }
                 }
                 $scope.typed = row.finnish;//""
                 $scope.correction = row.finnish;
             }else{
-                console.log('verbTempus:newData - rejected ',row.declinationOrTempus);
+                console.log('verbField:',row.declinationOrTempus == $scope.declinationortempus);
+                console.log('verbField:',row.personalProname == $scope.personal);
+                console.log('verbField:',row.plural == $scope.plural);
+                console.log('verbField:newData - rejected ',row.declinationOrTempus);
             }
-        });
-
-        $scope.$on('wordField:reset', function (event) {
-            $scope.typed = "-";
-            $scope.correction = "-";
-        });
+        }
 
     }])
     .directive('wordFieldWidget', function() {

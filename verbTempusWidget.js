@@ -22,7 +22,7 @@ angular.module('verb.tempus.widget',['word.field.widget'])
             data.forEach(function (row) {
                 $scope.idbaseform = row.idBaseForm;
                 if(row.declinationOrTempus == $scope.declinationortempus){
-                    console.log('broadcasting to wordField:newData');
+                    //console.log('broadcasting to wordField:newData');
                     $scope.$broadcast('wordField:newData',row);
                 }else{
                     //console.log('verbTempus:newData - rejected ',row.declinationOrTempus);
